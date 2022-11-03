@@ -134,12 +134,56 @@ const HomePage = () => {
       date: "",
     },
   ];
+  // Adding date to weekdays array
+  const addDate = () => {
+    // Get today's date from Date API
+    const todaysDate = new Date();
+    console.log(todaysDate);
+    // new date constructor:  new Date(year, monthIndex, day)
+    const today = new Date(
+      todaysDate.getFullYear(),
+      todaysDate.getMonth(),
+      todaysDate.getDate() - 1
+    );
+    // Get day of week from today's date
+    const dayOfWeek = todaysDate.getDay();
+
+    // assign date to weekdays before today
+    for (let i = 0; i < 7; i++) {
+      // j is variable for moving forward in the week
+      let j = dayOfWeek + i;
+      // days after today but not going past Saturday
+      if (j < 7) {
+        // weekdays array has index 0-6, j will index from today to 6
+        weekdays[j].date = new Date(
+          todaysDate.getFullYear(),
+          todaysDate.getMonth(),
+          // add a value that increases by one for each index farther from today
+          todaysDate.getDate() + i
+        ).toLocaleDateString();
+      }
+      // add variable k to decrease and assign prev days
+      let k = dayOfWeek - i;
+      // k will index from today to 0
+      if (k >= 0) {
+        // index weekdays array for days before today
+        weekdays[k].date = new Date(
+          todaysDate.getFullYear(),
+          todaysDate.getMonth(),
+          // subtract a value that increases by one for each index farther from today
+          todaysDate.getDate() - i
+        ).toLocaleDateString();
+      }
+    }
+  };
+
+  addDate();
+  console.log(weekdays);
+
   // Setting State
   // this is a 'hook'
   // useState hook provides the name of the state and a function to set that state
   const [days, setDays] = useState(weekdays);
-
-  console.log("days", days);
   return (
     <div>
       <h1>Workout Tracker</h1>

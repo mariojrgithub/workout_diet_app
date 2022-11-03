@@ -5,7 +5,9 @@ const Day = ({ setDays, weekday, workouts, mainMeals, snacks }) => {
     <div className="card" style={{ width: "18rem" }}>
       <div className="card-body">
         <h5 className="card-title">{weekday.day}</h5>
+
         <h3>Workouts</h3>
+
         <span>Morning Workout: </span>
         <select
           className="form-select"
