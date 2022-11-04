@@ -1,6 +1,6 @@
 import React from "react";
 
-const Day = ({ setDays, weekday, workouts, mainMeals, snacks }) => {
+const Day = ({ setDays, weekday, workouts, mainMeals, snacks, beverages }) => {
   return (
     <div className="card" style={{ width: "18rem" }}>
       <div className="card-body">
@@ -102,6 +102,37 @@ const Day = ({ setDays, weekday, workouts, mainMeals, snacks }) => {
             );
           })}
         </select>
+        <span>Breakfast Beverage: </span>
+        <select
+          className="form-select"
+          aria-label="Breakfast Beverage"
+          // onChange fires an event, we want to take this value and assign it to a key
+          onChange={(event) => {
+            weekday.breakfastBeverage = event.target.value;
+            setDays((items) => {
+              // make a copy of the current state
+              const array = [...items].filter(
+                // remove the weekday the selection is changing
+                (item) => item.day !== weekday.day
+              );
+              // append updated weekday and reset order
+              return [...array, weekday].sort(
+                // compare items to sort in acending order
+                (item1, item2) => item1.order - item2.order
+              );
+            });
+          }}
+        >
+          <option value="">Select Beverage</option>
+          {beverages.map((drink, index) => {
+            // we are mapping each meal in mainMeals array to an option in the select menu
+            return (
+              <option value={drink} key={index}>
+                {drink}
+              </option>
+            );
+          })}
+        </select>
         <span>Lunch: </span>
         <select
           className="form-select"
@@ -133,6 +164,37 @@ const Day = ({ setDays, weekday, workouts, mainMeals, snacks }) => {
             );
           })}
         </select>
+        <span>Lunch Beverage: </span>
+        <select
+          className="form-select"
+          aria-label="Lunch Beverage"
+          // onChange fires an event, we want to take this value and assign it to a key
+          onChange={(event) => {
+            weekday.lunchBeverage = event.target.value;
+            setDays((items) => {
+              // make a copy of the current state
+              const array = [...items].filter(
+                // remove the weekday the selection is changing
+                (item) => item.day !== weekday.day
+              );
+              // append updated weekday and reset order
+              return [...array, weekday].sort(
+                // compare items to sort in acending order
+                (item1, item2) => item1.order - item2.order
+              );
+            });
+          }}
+        >
+          <option value="">Select Beverage</option>
+          {beverages.map((drink, index) => {
+            // we are mapping each meal in mainMeals array to an option in the select menu
+            return (
+              <option value={drink} key={index}>
+                {drink}
+              </option>
+            );
+          })}
+        </select>
         <span>Dinner: </span>
         <select
           className="form-select"
@@ -160,6 +222,37 @@ const Day = ({ setDays, weekday, workouts, mainMeals, snacks }) => {
             return (
               <option value={meal} key={index}>
                 {meal}
+              </option>
+            );
+          })}
+        </select>
+        <span>Dinner Beverage: </span>
+        <select
+          className="form-select"
+          aria-label="Dinner Beverage"
+          // onChange fires an event, we want to take this value and assign it to a key
+          onChange={(event) => {
+            weekday.dinnerBeverage = event.target.value;
+            setDays((items) => {
+              // make a copy of the current state
+              const array = [...items].filter(
+                // remove the weekday the selection is changing
+                (item) => item.day !== weekday.day
+              );
+              // append updated weekday and reset order
+              return [...array, weekday].sort(
+                // compare items to sort in acending order
+                (item1, item2) => item1.order - item2.order
+              );
+            });
+          }}
+        >
+          <option value="">Select Beverage</option>
+          {beverages.map((drink, index) => {
+            // we are mapping each meal in mainMeals array to an option in the select menu
+            return (
+              <option value={drink} key={index}>
+                {drink}
               </option>
             );
           })}

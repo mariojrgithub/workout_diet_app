@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Day from "../Day/Day";
 
 const HomePage = () => {
@@ -62,10 +63,14 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
     {
       order: 2,
@@ -73,10 +78,14 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
     {
       order: 3,
@@ -84,10 +93,14 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
     {
       order: 4,
@@ -95,10 +108,14 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
     {
       order: 5,
@@ -106,10 +123,14 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
     {
       order: 6,
@@ -117,10 +138,14 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
     {
       order: 7,
@@ -128,17 +153,20 @@ const HomePage = () => {
       morningWorkout: "",
       afternoonWorkout: "",
       breakfast: "",
+      breakfastBeverage: "",
       lunch: "",
+      lunchBeverage: "",
       dinner: "",
+      dinnerBeverage: "",
       snack: "",
       date: "",
+      weather: "",
     },
   ];
   // Adding date to weekdays array
   const addDate = () => {
     // Get today's date from Date API
     const todaysDate = new Date();
-    console.log(todaysDate);
     // new date constructor:  new Date(year, monthIndex, day)
     const today = new Date(
       todaysDate.getFullYear(),
@@ -178,12 +206,23 @@ const HomePage = () => {
   };
 
   addDate();
-  console.log(weekdays);
 
+  const addWeather = () => {
+    const fiveDayWeatherForecast =
+      "https://api.openweathermap.org/data/2.5/forecast?lat=32.85568960637094&lon=-96.95943195562664&appid=0a283de22761cb735fef7f8772357572";
+    axios.get(fiveDayWeatherForecast).then((response) => {
+      console.log(response);
+    });
+  };
+  // useEffect function handles all the lifecycle hooks
+  useEffect(() => {
+    // addWeather();
+  }, []);
   // Setting State
   // this is a 'hook'
   // useState hook provides the name of the state and a function to set that state
   const [days, setDays] = useState(weekdays);
+  console.log(days);
   return (
     <div>
       <h1>Workout Tracker</h1>
@@ -199,6 +238,7 @@ const HomePage = () => {
               workouts={workouts}
               mainMeals={mainMeals}
               snacks={snacks}
+              beverages={beverages}
             />
           );
         })}
