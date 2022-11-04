@@ -209,7 +209,7 @@ const HomePage = () => {
 
   const addWeather = () => {
     const fiveDayWeatherForecast =
-      "https://api.openweathermap.org/data/2.5/forecast?lat=32.85568960637094&lon=-96.95943195562664&appid=0a283de22761cb735fef7f8772357572";
+      "https://api.openweathermap.org/data/2.5/forecast?lat=32.85568960637094&lon=-96.95943195562664&appid=";
     axios.get(fiveDayWeatherForecast).then((response) => {
       console.log(response);
     });
