@@ -222,11 +222,7 @@ const HomePage = () => {
   // this is a 'hook'
   // useState hook provides the name of the state and a function to set that state
   const [days, setDays] = useState(weekdays);
-<<<<<<< Updated upstream
-  console.log(days);
-=======
   console.table(days);
->>>>>>> Stashed changes
   return (
     <div>
       <h1>Workout Tracker</h1>
