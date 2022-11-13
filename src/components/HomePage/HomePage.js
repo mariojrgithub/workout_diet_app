@@ -204,24 +204,29 @@ const HomePage = () => {
       }
     }
   };
-
-  addDate();
-
+  // function to make API call to weather app
   const addWeather = () => {
+    // This end point provides data for
     const fiveDayWeatherForecast =
-      "https://api.openweathermap.org/data/2.5/forecast?lat=32.85568960637094&lon=-96.95943195562664&appid=";
+      "https://api.openweathermap.org/data/2.5/forecast?lat=32.85568960637094&lon=-96.95943195562664&appid=&units=imperial";
     axios.get(fiveDayWeatherForecast).then((response) => {
-      console.log(response);
+      setWeather(response.data);
     });
   };
-  // useEffect function handles all the lifecycle hooks
-  useEffect(() => {
-    // addWeather();
-  }, []);
+
   // Setting State
   // this is a 'hook'
   // useState hook provides the name of the state and a function to set that state
   const [days, setDays] = useState(weekdays);
+
+  const [weather, setWeather] = useState([]);
+
+  // useEffect function handles all the lifecycle hooks
+  useEffect(() => {
+    addDate();
+    // addWeather();
+  }, []);
+
   console.log(days);
   return (
     <div>
@@ -232,6 +237,9 @@ const HomePage = () => {
           return (
             // passing 'props' into each components so that we can use these props in the component
             <Day
+              // pass in weather state
+              weather={weather}
+              // pass in funtion to set the day state
               setDays={setDays}
               key={index}
               weekday={day}

@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Day = ({ setDays, weekday, workouts, mainMeals, snacks, beverages }) => {
+const Day = ({
+  weather,
+  setDays,
+  weekday,
+  workouts,
+  mainMeals,
+  snacks,
+  beverages,
+}) => {
+  const [temp, setTemp] = useState("");
+  useEffect(() => {
+    if (weather.list !== undefined) {
+      console.log(weekday.date);
+      if (
+        weekday.date.split("/")[1] ==
+        Date(weather.list[0].dt).toString().split(" ")[2]
+      ) {
+        setTemp(weather.list[0].main.temp);
+      }
+    }
+  }, [weekday.date, weather.list]);
   return (
     <div className="card" style={{ width: "18rem" }}>
       <div className="card-body">
+        <h3>{Math.round(temp)}°F</h3>
         <h5 className="card-title">{weekday.day}</h5>
-
+        <h6>{weekday.date}</h6>
         <h3>Workouts</h3>
 
         <span>Morning Workout: </span>
