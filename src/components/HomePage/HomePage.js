@@ -218,6 +218,7 @@ const HomePage = () => {
   // this is a 'hook'
   // useState hook provides the name of the state and a function to set that state
   const [days, setDays] = useState(weekdays);
+
   const [weather, setWeather] = useState([]);
 
   // useEffect function handles all the lifecycle hooks
@@ -228,6 +229,9 @@ const HomePage = () => {
 
   console.log(days);
   return (
+    <div>
+      <h1>Workout Tracker</h1>
+      <div style={{ display: "flex", flexFlow: "row wrap" }}>
         {/* mapping each day to 'Day' component. index is the unique key for each day */}
         {days.map((day, index) => {
           return (
